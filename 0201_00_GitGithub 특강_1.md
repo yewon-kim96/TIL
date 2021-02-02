@@ -87,6 +87,8 @@
 
 
 
+
+
 > #### Forbes 2017 Technology Trend 
 >
 > * IoT and Smart Home Tech
