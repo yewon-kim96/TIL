@@ -4,7 +4,7 @@
 
 ![img](https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2FMjAxNzA0MTdfMTk3%2FMDAxNDkyNDA2NzU5MDYy.ZGr03FmUfos1jle-U2ybpvL1pVSlwGfdkKD0OP5J9NEg.wZsiTqUL_uMMqSfngUeU1TZhvjQr6b8n0wGEclXFhRYg.PNG.gus9769%2FKakaoTalk_20170417_142032266.png&type=sc960_832)
 
-![image-20210203201205539](https://lh3.googleusercontent.com/proxy/MI-J_rOmv0kEZNnxqOFy5ri5XHf0eCLF5gGUKNmluYTR1ZlNNgERdj6UlmQvBwt07T2ohTFqDrsNXJCsMriJGE-iDM7VgnCy4LmLNWiCo_EKWClLHUtjCleDWduZ2QyDnp7Wh484pIefObCz9WredUUGjst4BZszDXt5LfKez4cZUp8dxyHlTXolC1pg-bGAIDG22A8PpPaE_e3yuoRUxqJPiNk)
+![image-20210212181534247](C:\Users\김근묵교수_스마트\AppData\Roaming\Typora\typora-user-images\image-20210212181534247.png)
 
 #### 1. Field_필드
 
@@ -18,7 +18,7 @@
 >
 > 생성자는 객체 생성 시 초기화를 담당한다. 
 >
-> 생성자는 메소드와 비슷하게 생겼지만, **클래스 이름**으로 되어 있고, 리턴 타입이 없다.
+> 생성자는 메소드와 비슷하게 생겼지만, **클리스 이름**으로 되어 있고, 리턴 타입이 없다.
 
 #### 3. Method_메소드
 
@@ -36,7 +36,7 @@
 
 ![img](https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA1MDNfMjI3%2FMDAxNTg4NDY2MTY5MjE4.V2L4j6VUjPBx_pqVrn2ob8WSYQ0QPEEH4edqdFfmHBEg.rp62188oBqQiPWO-W4QcfRH83OADAFm4A95l530oV1sg.PNG.wnsghks1017%2F%25BC%25B3%25B8%25ED22222.png&type=sc960_832)
 
-​																					*1. 접근 지정자 / 2. 클래스 선언 / 3. 클래스명 / 4.필드 / 5. 메소드*
+​																	*1. 접근 지정자 / 2. 클래스 선언 / 3. 클래스명 / 4.필드 / 5. 메소드*
 
 
 
@@ -104,60 +104,64 @@
 >
 > **객체를 부품화시키는 것이 가능하며, 유지보수가 용이해진다.**
 >
-> 1. Polymorphic Variable_다형적 변수 :  super type으로 선언된 변수
+> 1.  Polymorphic Variable_다형적 변수 :  super type으로 선언된 변수
 >
 >    ```java
 >    public void String(Shape S){ //정의
 >           } //여기서 S가 다형적 변수, Circle, Rectangle, Triangle 모두 shape의 하위 객체를 가리키는 변수
 >    ```
->  2. **Override**_재정의 : 상속관계에서 부모의메소드를 재정의해서 **자식클래스에 맞게 사용하는 것**, Super의 메소드를 sub에서 다시 정의하는 것
+>   ```
+> 
+> 2.  **Override**_재정의 : 상속관계에서 부모의메소드를 재정의해서 **자식클래스에 맞게 사용하는 것**
+> 
+>    Super의 메소드를 sub에서 다시 정의하는 것
+> 
+>    **`shadow effect`를 우회하기 위함_ 확장성, 성능 향상을 위해서 **
+> 
+>    * `shadow effect` : super type으로 선언된 객체는 그 super type으로만 취급한다. 하위 type 멤버는 가려지는 효과
+> 
+>    ```java
+>    public class Animal{
+>        void eat() {
+>            System.out,println("Animal이 먹습니다.");
+>        }
+>        void sleep(){
+>            System.out.println("Animal이 잡니다.");
+>        } 
+>    }
+>   ```
 >
->     `shadow effect`를 우회하기 위함_ **확장성, 성능 향상을 위해서 **
+>    ```java
+>    public class Dog extends Animal{
+>        void eat(){
+>           System.out.println("Dog가 먹습니다.");
+>        }
+>        void sleep(){
+>            System.out.println("Dog가 잡니다.");
+>        }
+>    }
+>    ```
 >
->     * `shadow effect` : super type으로 선언된 객체는 그 super type으로만 취급한다. 하위 type 멤버는 가려지는 효과
+>    위와 같이 Dog 클래스는 Animal 클래스에 의해 상속받고 있고, 같은 메소드를 사용하지만, 오버라이딩으로 다시 정의를 했다.
 >
->       ```java
->          public class Animal{
->              void eat() {
->                  System.out,println("Animal이 먹습니다.");
->              }
->              void sleep(){
->                  System.out.println("Animal이 잡니다.");
->              } 
->          }
->       ```
+>    자식 클래스에 맞게 "Dog가 먹습니다." 라고 재정의를 한 것이다.
 >
->       ```java
->          public class Dog extends Animal{
->              void eat(){
->                 System.out.println("Dog가 먹습니다.");
->              }
->              void sleep(){
->                  System.out.println("Dog가 잡니다.");
->              }
->          }
->       ```
+>    ```java
+>   public class OverRideTest{
+>        public static void main(String[] args){
+> 
+>            Animal myAnimal = new Animal();
+>            Dog myDog = new Dog();
+> 
+>            myDog.eat();
+>            myDog.sleep();
+>        }
+>    }
+>    ```
 >
->          위와 같이 Dog 클래스는 Animal 클래스에 의해 상속받고 있고, 같은 메소드를 사용하지만, 오버라이딩으로 다시 정의를 했다.
+>    이렇게 객체를 생성해서 메소드를 실행하면 아래와 같이 결과가 나온다.
 >
->          자식 클래스에 맞게 "Dog가 먹습니다." 라고 재정의를 한 것이다.
->
->       ```java
->         public class OverRideTest{
->              public static void main(String[] args){
->
->                  Animal myAnimal = new Animal();
->                  Dog myDog = new Dog();
->
->                  myDog.eat();
->                  myDog.sleep();
->              }
->          }
->       ```
->
->          이렇게 객체를 생성해서 메소드를 실행하면 아래와 같이 결과가 나온다.  
->
->          ![image-20210203201315983](https://postfiles.pstatic.net/MjAyMDA2MDRfMjMz/MDAxNTkxMjY3NTAzNjEw.rusWGOsdGQ09rkZbZ5ukQgUzywW0JAVP_G-fmFtzb-Eg.y9L7y7_GDY-tpzMWGI4sP-9XjtSDJPT107oaK82lnesg.PNG.wnsghks1017/%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%93%9C_33.png?type=w773)	 
+>    ![image-20210203201315983](https://postfiles.pstatic.net/MjAyMDA2MDRfMjMz/MDAxNTkxMjY3NTAzNjEw.rusWGOsdGQ09rkZbZ5ukQgUzywW0JAVP_G-fmFtzb-Eg.y9L7y7_GDY-tpzMWGI4sP-9XjtSDJPT107oaK82lnesg.PNG.wnsghks1017/%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%93%9C_33.png?type=w773)
 >
 > 
 >
@@ -165,7 +169,7 @@
 >
 >    오버라이드는 **상속관계**에서 사용된다는 것을 기억하자.
 >
-> 3. **Overload**_오버로드 : **한 클래스 내에서 같은 이름의 메소드가 다시 존재**하는 것
+> 3.  **Overload**_오버로드 : **한 클래스 내에서 같은 이름의 메소드가 다시 존재**하는 것
 >
 >    원래는 한 클래스에 같은 이름의 메소드를 사용하는 것은 불가능하다. 하지만 오버로드 조건에 맞춘다면 같은 이름의 메소드를 여러 번 사용 가능하다.
 >
@@ -173,12 +177,10 @@
 >
 >      **메소드의 매개변수의 개수 또는 데이터 타입이 다르면 오버로드 조건을 만족한다.**
 >
->      
->
->      하지만 리턴타입만 다른 것은 안 된다. (리턴 타입은 같아도 되고, 달라도 된다. 상관없음.)
+>      하지만 리턴타입만 다른 것은 안 된다.(리턴 타입은 같아도 되고, 달라도 된다. 상관없음.)
 >
 >      ```java
->       public class OverLoadTest{
+>     public class OverLoadTest{
 >          int add(int a, int b) {
 >             return a+b;        
 >          }
